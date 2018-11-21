@@ -1,4 +1,4 @@
-#include <SFML/Graphics.hpp>
+/*#include <SFML/Graphics.hpp>
 #include <iostream>
 using namespace std;
 int main()
@@ -7,7 +7,7 @@ int main()
 	sf::CircleShape shape(200.f);
 	shape.setFillColor(sf::Color(123,945,191));
 	shape.setOutlineThickness(-198.f);
-	shape.setOutlineColor(sf::Color(250, 150, 100));
+	shape.setOutlineColor(sf::Color::Yellow);
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -22,4 +22,4 @@ int main()
 	}
 	cout<<"git works";
 	return 0;
-}
+}*/
