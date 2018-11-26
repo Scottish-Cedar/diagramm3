@@ -1,13 +1,15 @@
+
 #include <SFML/Graphics.hpp>
 #include <iostream>
 using namespace std;
 
+
 sf::VertexArray spots(int i, int j)
 {
-		sf::VertexArray spot(sf::Points, 1);
-		spot[0].position = sf::Vector2f(i,j);
-		spot[0].color = sf::Color::Red;
-		return spot;
+	sf::VertexArray spot(sf::Points, 1);
+	spot[0].position = sf::Vector2f(i, j);
+	spot[0].color = sf::Color::Red;
+	return spot;
 }
 
 const int N = 10;
@@ -16,12 +18,12 @@ vector<pair<int, int>> v1(N);
 
 int main()
 {
-	
+
 	int i = 0;
 	while (i < N)
 	{
 		v1[i] = make_pair(7 * i*i - 43 * i + 205, 5 * i*i - 26 * i + 208);
-		cout << v1[i].first <<' '<< v1[i].second<<endl;
+		cout << v1[i].first << ' ' << v1[i].second << endl;
 		i++;
 	}
 	i = 0;
@@ -34,14 +36,17 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
+		sf::VertexArray spot(sf::Points, N);
 		window.clear();
+		i = 0;
 		while (i < N)
 		{
-			window.draw(spots(v1[i].first, v1[i].second));
-			window.display();
+			spot[i].position = sf::Vector2f(v1[i].first, v1[i].second);
+			spot[i].color = sf::Color::Red;
 			i++;
 		}
-		
+		window.draw(spot);
+		window.display();
 	}
 	return 0;
 }
