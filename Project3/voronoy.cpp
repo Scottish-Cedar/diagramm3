@@ -12,7 +12,9 @@ vector <pair<int, int>> v3(1000);
 bool func(int x, int y, int x0, int y0, int x1)
 {
 	if ((x1 - x)*(x1 - x) == (y0 - y)*(y0 - y)*(x0 - x)*(x0 - x))
+	{
 		return true;
+	}
 	else return false;
 }
 
@@ -47,7 +49,35 @@ int main()
 		j1 += 2;
 	}
 	j1 = 0;
-	i = 0;
+	i = 8;
+	vector <pair<int, int>>  coord(H);
+	int p = 0;
+	int y = 0;
+	int x = 0;
+	int x1 = vsp[i+1].first;
+	cout << x1 << endl;
+	int x0 = vsp[i].first;
+	cout << x0 << endl;
+	int y0 = vsp[i].second;
+	cout << y0 << endl;
+	while (y < H)
+	{
+		while (x < x1)
+		{
+			if (func(x, y, x0, y0, x1))
+			{
+				cout << "nice!" << endl;
+				cout << "x=" << x << " " << "y=" << y << endl;
+				coord[p].first = x;
+				coord[p].second = y;
+				p++;
+			}
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+	
 	sf::RenderWindow window(sf::VideoMode(H, H), "SFML works!");
 
 	while (window.isOpen())
@@ -69,6 +99,16 @@ int main()
 			i++;
 		}
 		window.draw(spot);
+
+		sf::VertexArray parab(sf::Points, p);
+		i = 0;
+		while (i < p)
+		{
+			parab[i].position = sf::Vector2f(coord[i].first, coord[i].second);
+			parab[i].color = sf::Color::Magenta;
+			i++;
+		}
+		window.draw(parab);
 
 		sf::VertexArray line(sf::Lines, 2);
 		line[0].position = sf::Vector2f(vsp[j1].first, 0);
